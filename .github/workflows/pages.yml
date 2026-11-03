@@ -1,0 +1,27 @@
+name: Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency: {group: pages, cancel-in-progress: true}
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: {name: github-pages, url: "${{ steps.d.outputs.page_url }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble site (web/ + tree.json + product.json files; no build step)
+        run: |
+          mkdir -p _site/data
+          cp -r web/. _site/
+          cp tree.json _site/data/
+          for d in products/*/; do n=$(basename "$d"); mkdir -p "_site/data/products/$n"; cp "$d/product.json" "_site/data/products/$n/"; done
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: _site}
+      - id: d
+        uses: actions/deploy-pages@v4

@@ -55,3 +55,12 @@ Demo: VM1 `200+100=44`, VM2 `10-20=246`, VM3 loop sum `5+4+3+2+1=15`, VM4 `255+1
 `vm.ProcessVM(vm_id, command, cwd)` runs a product's entry command as a subprocess in its own working dir; it talks to the host only via its `Link`: messages queued on `link.to_vm` become stdin lines, each stdout line becomes a `link.to_host` message.
 
 Absorbed so far: `heatgate` (MIT) → Earthenware Heatgate, VM5; `llama.cpp` (MIT) → Earthenware Llama, VM6 (`llama-server`, model path placeholder — see products/llama.cpp/README.md); `valkey` (BSD-3-Clause) → Earthenware Valkey, VM7 (`valkey-server --port 0` + unix socket — see products/valkey/README.md). `mars-crawler` and `3xb-api` were refused (no license file) — add a permissive LICENSE upstream and re-run.
+
+## Earthenware OS (browser, `web/`)
+
+A static, no-build browser "OS" for the Earthenware Computer — desktop icons and windows on a laptop, full-screen sheets on a phone.
+`web/cpu8.js` is a JS port of `cpu8.py`/`vm.py`/`main.py` (same instruction set, same demo programs); `tests/cpu8.test.js` (`node --test tests/`) checks it produces the identical trace and `HOST OUTPUT: [44, 246, 15, 42, 91]`.
+
+Apps: **Tree** (29 nodes, computer gold, VMs blue, products green; tap for details) · **VM1–VM4** (registers, memory, program, link queue; Step / Run / Reset) · **Host console** (trace + output) · **Assembler** (type a program, `label:`, `@addr value` data, load into any VM) · **Products** (absorbed products with license + upstream; these run natively, not in the browser).
+
+Local: `python3 -m http.server` in the repo root, open `http://localhost:8000/web/`. Deployed to GitHub Pages by `.github/workflows/pages.yml` (copies `web/`, `tree.json` and each `product.json`).
