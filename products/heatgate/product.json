@@ -1,0 +1,9 @@
+{
+ "name": "Earthenware Heatgate",
+ "upstream": "https://github.com/fitzyracing1/heatgate",
+ "commit": "e1e7807feeb71ba443e39b87106443e70fff5106",
+ "license": "MIT",
+ "entry": "python3 -m heatgate.cli",
+ "vm_slot": 5,
+ "source": "pinned-reference"
+}
