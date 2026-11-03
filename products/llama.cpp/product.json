@@ -1,0 +1,9 @@
+{
+ "name": "Earthenware Llama",
+ "upstream": "https://github.com/ggml-org/llama.cpp",
+ "commit": "29c720eaf72fcf8e4e61a56a88b994d92668261d",
+ "license": "MIT",
+ "entry": "llama-server -m models/MODEL.gguf --host 127.0.0.1 --port 8080",
+ "vm_slot": 6,
+ "source": "pinned-reference"
+}

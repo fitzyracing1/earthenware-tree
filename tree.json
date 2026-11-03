@@ -227,10 +227,30 @@
    "owner": "VM5",
    "product": "heatgate",
    "slot": 5
+  },
+  {
+   "id": "VM6",
+   "kind": "vm",
+   "level": "product",
+   "parent": "P",
+   "owner": "VM6",
+   "product": "llama.cpp",
+   "slot": 6
+  },
+  {
+   "id": "VM7",
+   "kind": "vm",
+   "level": "product",
+   "parent": "P",
+   "owner": "VM7",
+   "product": "valkey",
+   "slot": 7
   }
  ],
  "product_links": {
   "P": "C",
-  "VM5": "C"
+  "VM5": "C",
+  "VM6": "C",
+  "VM7": "C"
  }
 }
