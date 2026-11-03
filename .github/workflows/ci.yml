@@ -9,3 +9,6 @@ jobs:
         with: {python-version: "3.12"}
       - run: python -m unittest -v
       - run: python main.py
+      - uses: actions/setup-node@v4
+        with: {node-version: "20"}
+      - run: node --test tests/
