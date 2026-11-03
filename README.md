@@ -54,4 +54,4 @@ Demo: VM1 `200+100=44`, VM2 `10-20=246`, VM3 loop sum `5+4+3+2+1=15`, VM4 `255+1
 
 `vm.ProcessVM(vm_id, command, cwd)` runs a product's entry command as a subprocess in its own working dir; it talks to the host only via its `Link`: messages queued on `link.to_vm` become stdin lines, each stdout line becomes a `link.to_host` message.
 
-Absorbed so far: `heatgate` (MIT) → Earthenware Heatgate, VM5. `mars-crawler` and `3xb-api` were refused (no license file) — add a permissive LICENSE upstream and re-run.
+Absorbed so far: `heatgate` (MIT) → Earthenware Heatgate, VM5; `llama.cpp` (MIT) → Earthenware Llama, VM6 (`llama-server`, model path placeholder — see products/llama.cpp/README.md); `valkey` (BSD-3-Clause) → Earthenware Valkey, VM7 (`valkey-server --port 0` + unix socket — see products/valkey/README.md). `mars-crawler` and `3xb-api` were refused (no license file) — add a permissive LICENSE upstream and re-run.
