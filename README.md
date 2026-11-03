@@ -41,3 +41,17 @@ Instructions are 2 bytes (opcode, operand): `HALT LOAD addr, LDI imm, STORE addr
 Each VM owns its tree nodes, a private `CPU8` (own memory + registers), and one `Link` (two queues) to the host. No memory is shared between VMs.
 
 Demo: VM1 `200+100=44`, VM2 `10-20=246`, VM3 loop sum `5+4+3+2+1=15`, VM4 `255+1=0` → JZ → sends `42`. Host receives each, OUTs it, then OUTs the 8-bit sum: `HOST OUTPUT: [44, 246, 15, 42, 91]`.
+
+## Absorbing products
+
+`python3 absorb.py <owner/repo> [--entry CMD] [--vendor]` repackages an outside open-source project as an **Earthenware <Name>** product in its own VM slot.
+
+1. Reads repo metadata + SPDX license via `gh api` (falls back to the public GitHub API with urllib).
+2. **License gate:** only `MIT`, `Apache-2.0`, `BSD-2-Clause`, `BSD-3-Clause`, `ISC`. Anything else, or no license, is refused with a clear message and nothing is written.
+3. Writes `products/<name>/`: `product.json` (name, upstream URL, pinned commit, license, entry command, VM slot), the upstream `LICENSE` copied unmodified, and a `NOTICE` crediting the original author, repo URL and commit.
+4. **Pinned reference by default** — code is not vendored; the exact commit is recorded so it can be fetched reproducibly. `--vendor` additionally shallow-clones into `products/<name>/upstream/` (git-ignored).
+5. Grows the tree: `tree.json` gains a `products` list and `product_links`. A hub node `P` (linked to `C`) roots a **ternary** tree of product VMs (`VM5`, `VM6`, … — max 3 children per parent, filled breadth-first), each linked to `C`. Products are kept out of `nodes` so the CPU demo tree stays at 29 nodes.
+
+`vm.ProcessVM(vm_id, command, cwd)` runs a product's entry command as a subprocess in its own working dir; it talks to the host only via its `Link`: messages queued on `link.to_vm` become stdin lines, each stdout line becomes a `link.to_host` message.
+
+Absorbed so far: `heatgate` (MIT) → Earthenware Heatgate, VM5. `mars-crawler` and `3xb-api` were refused (no license file) — add a permissive LICENSE upstream and re-run.

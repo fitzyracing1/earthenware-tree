@@ -209,5 +209,28 @@
    "parent": "VM4.s1",
    "owner": "VM4"
   }
- ]
+ ],
+ "products": [
+  {
+   "id": "P",
+   "kind": "hub",
+   "level": "beginning",
+   "parent": null,
+   "owner": "products",
+   "product": null
+  },
+  {
+   "id": "VM5",
+   "kind": "vm",
+   "level": "product",
+   "parent": "P",
+   "owner": "VM5",
+   "product": "heatgate",
+   "slot": 5
+  }
+ ],
+ "product_links": {
+  "P": "C",
+  "VM5": "C"
+ }
 }
