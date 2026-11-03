@@ -1,0 +1,5 @@
+Earthenware Valkey is a repackaging of valkey-io/valkey
+Original author: valkey-io
+Upstream: https://github.com/valkey-io/valkey
+Commit: 14f16537d4f87a763a9b024d10d2254a21cac020
+License: BSD-3-Clause (see LICENSE, copied unmodified from upstream)

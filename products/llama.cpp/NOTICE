@@ -1,0 +1,5 @@
+Earthenware Llama is a repackaging of ggml-org/llama.cpp
+Original author: ggml-org
+Upstream: https://github.com/ggml-org/llama.cpp
+Commit: 29c720eaf72fcf8e4e61a56a88b994d92668261d
+License: MIT (see LICENSE, copied unmodified from upstream)

@@ -1,0 +1,9 @@
+{
+ "name": "Earthenware Valkey",
+ "upstream": "https://github.com/valkey-io/valkey",
+ "commit": "14f16537d4f87a763a9b024d10d2254a21cac020",
+ "license": "BSD-3-Clause",
+ "entry": "valkey-server --port 0 --unixsocket valkey.sock --save '' --appendonly no",
+ "vm_slot": 7,
+ "source": "pinned-reference"
+}
